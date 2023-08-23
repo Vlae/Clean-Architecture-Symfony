@@ -13,7 +13,7 @@ class HashGenerator
      *
      * @return string
      */
-    public static function generateSHA1(string $data): string
+    public function generateSHA1(string $data): string
     {
         return sha1($data);
     }

@@ -33,6 +33,10 @@ class GetHashService implements Service
     {
         $rows = $this->em->getRepository(Hash::class)->findBy(['hash' => $this->hash]);
 
+        if (empty($rows)) {
+            return;
+        }
+
         $entity = current($rows);
         $responseData['item'] = $entity->getData();
 

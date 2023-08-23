@@ -16,26 +16,8 @@ Service must have
 ◉ Tests that cover common logic
 ◉ We should check for collisions - in cease we already have data in DB with the same hash additional message about it should be added to the response.
 
-Transcription for Bisuness to code:
-/hash has POST and GET requests
-
-POST: 
-    Incoming data 
-    {
-        "data": "..."
-    }
-    
-    Data is string. 
-    Return hash in sha1
-
-
-GET: 
-    
-
     Postgre database connections: 
     User: app 
     Db: app
     Password: 1234
     Port: 49539
-
-    Configurable by .env file  

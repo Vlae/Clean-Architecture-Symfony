@@ -11,7 +11,6 @@ class PostHashRequest extends AbstractRequest
 
     public function getData()
     {
-        //todo:: add
         return $this->data;
     }
 }
