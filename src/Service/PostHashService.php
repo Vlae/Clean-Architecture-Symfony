@@ -36,7 +36,6 @@ class PostHashService implements Service
     public function handle(): void
     {
         $errors = $this->request->validate();
-        dd($errors);
         if (count($errors) > 0) {
             $this->response->setStatusCode(Response::HTTP_BAD_REQUEST);
             $this->response->setData((string)$errors); // todo make beaty output

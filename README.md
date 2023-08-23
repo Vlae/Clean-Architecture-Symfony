@@ -16,6 +16,12 @@ Service must have
 ◉ Tests that cover common logic
 ◉ We should check for collisions - in cease we already have data in DB with the same hash additional message about it should be added to the response.
 
+    To start project:
+    1) symfony server:start
+    2) docker-compose up -d 
+    3) Migrate db by symfony doctrine command 
+    4) Go to 127.0.0.1:8000/api/doc to see OpenAPI docs
+
     Postgre database connections: 
     User: app 
     Db: app
