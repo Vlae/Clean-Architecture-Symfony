@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\HashRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HashRepository::class)]
 class Hash
@@ -17,9 +18,11 @@ class Hash
     private ?string $hash = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private array $data = [];
 
     #[ORM\Column]
+    #[ORM\Defau]
     private ?\DateTimeImmutable $created_at = null;
 
     public function getId(): ?int
@@ -56,9 +59,9 @@ class Hash
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    public function setCreatedAt(): static
     {
-        $this->created_at = $created_at;
+        $this->created_at = date_create_immutable();
 
         return $this;
     }

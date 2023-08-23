@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Service;
+
+use App\Entity\Hash;
+use App\Interface\Service;
+use App\Helpers\HashGenerator;
+use App\Requests\PostHashRequest;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+class PostHashService implements Service
+{
+    /**
+     * @var JsonResponse
+     */
+    private JsonResponse $response;
+
+    /**
+     * @param PostHashRequest         $request
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(
+        private readonly PostHashRequest         $request,
+        private readonly EntityManagerInterface $em,
+    ) {
+        $this->response = new JsonResponse();
+    }
+
+    /**
+     * @return void
+     */
+    public function handle(): void
+    {
+        $errors = $this->request->validate();
+
+        if (count($errors) > 0) {
+            $this->response->setStatusCode(300);
+            $this->response->setData((string)$errors); // todo make beaty output
+            return;
+        }
+
+        $data = $this->request->getData();
+
+        $entity = new Hash();
+        $entity->setData((array)$data);
+        $entity->setHash(HashGenerator::generateSHA1(json_encode($data)));
+        $entity->setCreatedAt();
+
+        $this->response->setStatusCode(200);
+        $this->response->setData($entity->getHash());
+
+        $this->em->persist($entity);
+        $this->em->flush();
+
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getResponse(): JsonResponse
+    {
+        return $this->response;
+    }
+}

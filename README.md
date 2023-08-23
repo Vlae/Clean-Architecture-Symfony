@@ -3,7 +3,8 @@ Task:
 Create a simple PHP hash service.
 /hash has 2 implementations
 ◉ Store: data is provided with POST request in JSON body structure: {“data”: “…”}, in response we expect to get SHA1 code of data provided - {“hash”: “…”}
-◉ Read: read data by provided hash in URL (hash/[HASCODE]) in response we can have the following results:
+◉ Read: read data by provided h
+ash in URL (hash/[HASCODE]) in response we can have the following results:
 ○ If nothing was found - a 404 error
 ○ If we have 1 result - {“item”: “…”}
 ○ If we have collisions add collisions array - {“item”: “…”, “collisions”: [“…”, “…”]}
