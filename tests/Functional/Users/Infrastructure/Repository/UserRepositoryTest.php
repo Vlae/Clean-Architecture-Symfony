@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\functional\Users\Infrastructure\Repository;
+namespace App\Tests\Functional\Users\Infrastructure\Repository;
 
 use Faker\Factory;
 use Faker\Generator;
